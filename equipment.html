@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="he">
+    <head>
+    <meta charset="UTF-8" />
+    <title>טופס השאלת ציוד</title>
+<script src="https://unpkg.com/jquery"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://unpkg.com/survey-jquery@1.9.126/survey.jquery.min.js"></script>
+<script src="https://unpkg.com/survey-pdf@1.9.126/survey.pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link href="https://unpkg.com/survey-core@1.9.126/modern.min.css" type="text/css" rel="stylesheet"/>
+<style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; direction: rtl; }
+    #buttons { margin-top: 20px; }
+    button { margin-left: 10px; padding: 10px 16px; font-size: 16px; }
+</style>
+</head>
+<body>
+    <!-- <h2>טופס רישום חיות</h2> -->
+    <div id="surveyContainer"></div>
+    <div id="buttons" style="display:none;">
+        <!--     <button id="saveToPdfBtn">📄 שמור ל-PDF</button>
+            <button id="emailBtn">📧 שלח במייל</button>
+            <button id="whatsappBtn">💬 שלח בוואטסאפ</button>
+         -->
+        <button id="saveImageBtn">🖼️ שמור כתמונה</button>
+    </div>
+    
+    <script>
+        Survey.StylesManager.applyTheme("modern");
+        const surveyJSON =
+        {
+            "title": "טופס השאלת ציוד 1894",
+            "pages": [
+              {
+                  "showPageTitles": false,
+                  "elements": [
+                      {
+                          "type": "text",
+                          "name": "שם מלא",
+                          "isRequired": true
+                      },
+                      {
+                          "type": "text",
+                          "name": "טלפון",
+                          "inputType": "tel"
+                      },
+                      // {
+                      //   "type": "matrix",
+                      //   "name": "question6",
+                      //   "titleLocation": "hidden",
+                      //   "columns": [
+                      //     "א",
+                      //     "ב",
+                      //     "ג",
+                      //     "ד",
+                      //     "פלס״ם"
+                      //   ],
+                      //   "rows": [
+                      //     "פלוגה"
+                      //   ]
+                      // },
+                      {
+                        "type": "dropdown",
+                        "name": "question7",
+                        "title": "פלוגה",
+                        "choices": [
+                                        "א",
+                                        "ב",
+                                        "ג",
+                                        "ד",
+                                        "פלס״ם"
+                        ]
+                      },
+                      {
+                          "type": "text",
+                          "name": "מספר אישי",
+                          "inputType": "number"
+                      },
+                      {
+                          "type": "matrixdropdown",
+                          "name": "ציוד שהושאל",
+                          "columns": [
+                            {
+                                "name": "כמות",
+                                "cellType": "text",
+                                "placeholder": "0"
+                            }
+                          ],
+                          "rows": [
+                            "שולחן",
+                            "ספסל",
+                            "מיטה",
+                            "מזרון",
+                            "חופית",
+                            "טרמוקן",
+                            "ג׳ריקן",
+                            "פח",
+                            "רשת הצללה",
+                            "ערכת אוסם",
+                            "הלמניה",
+                            "פטיש 5",
+                            "אלונקה",
+                            "בזנט 180",
+                            "בזנט 60"
+                          ]
+                      }
+          
+                  ]
+              }
+            ]
+        }
+        const survey = new Survey.Model(surveyJSON);
+        // fetch("form.json")
+        //   .then(res => res.json())
+        //   .then(surveyJSON => {
+        // const survey = new Survey.Model(surveyJSON);
+        $("#surveyContainer").Survey({ model: survey });
+    
+        // survey.onComplete.add(sender => {
+        //   window.surveyData = sender.data;
+        //   document.getElementById("buttons").style.display = "block";
+    
+        //   // נרנדר מחדש את הטופס עם הנתונים שמולאו
+        //   const newSurvey = new Survey.Model(surveyJSON);
+        //   newSurvey.data = window.surveyData;
+        //   $("#surveyContainer").html(""); // ננקה את האלמנט
+        //   $("#surveyContainer").Survey({ model: newSurvey });
+    
+    
+    
+        //   // window.printableSurvey = newSurvey;
+    
+    
+        //           html2canvas(document.getElementById("surveyContainer")).then(canvas => {
+        //             const link = document.createElement("a");
+        //             link.download = "טופס_רישום.png";
+        //             link.href = canvas.toDataURL("image/png");
+        //             link.click();
+        //           });
+    
+        // });
+    
+        survey.onComplete.add(sender => {
+            const data = sender.data;
+        
+            const displaySurvey = new Survey.Model(surveyJSON);
+            displaySurvey.data = data;
+            displaySurvey.mode = "display"; // 🟡 מצב תצוגה בלבד – בלי כפתור Submit
+        
+            $("#surveyContainer").html(""); // ננקה
+            $("#surveyContainer").Survey({ model: displaySurvey });
+        
+            // שמירה כתמונה אוטומטית
+            setTimeout(() => {
+                html2canvas(document.getElementById("surveyContainer")).then(canvas => {
+                const link = document.createElement("a");
+                link.download = "טופס_רישום.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            });
+        }, 500);
+    });
+    
+    
+        // survey.onComplete.add(sender => {
+        //   window.surveyData = sender.data;
+    
+        //   // מרנדרים מחדש את הסקר עם התשובות
+        //   const newSurvey = new Survey.Model(surveyJSON);
+        //   newSurvey.data = window.surveyData;
+        //   $("#surveyContainer").html(""); // ננקה
+        //   $("#surveyContainer").Survey({ model: newSurvey });
+    
+        //   // נמתין טיפה כדי לאפשר לרנדר להסתיים
+        //   setTimeout(() => {
+        //     html2canvas(document.getElementById("surveyContainer")).then(canvas => {
+        //       const link = document.createElement("a");
+        //       link.download = "טופס_רישום.png";
+        //       link.href = canvas.toDataURL("image/png");
+        //       link.click();
+        //     });
+        //   }, 500); // חצי שניה זה בד"כ מספיק
+        // });
+    
+        // survey.onComplete.add(sender => {
+        //   document.getElementById("buttons").style.display = "block";
+        //   window.surveyData = sender.data;
+        //   window.surveyJSON = surveyJSON;
+        // });
+    
+        // document.getElementById("saveToPdfBtn").addEventListener("click", () => {
+        //   const pdf = new SurveyPDF.SurveyPDF(surveyJSON);  // לא window["SurveyPDF"]
+        //   // const pdf = new window["SurveyPDF"].SurveyPDF(surveyJSON);
+        //   pdf.data = window.surveyData;
+        //   pdf.save("תשובות_הטופס.pdf");
+        // });
+    
+        // document.getElementById("emailBtn").addEventListener("click", () => {
+        //   const subject = encodeURIComponent("תשובות לטופס רישום חיות");
+        //   const body = encodeURIComponent(JSON.stringify(window.surveyData, null, 2));
+        //   window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        // });
+    
+        document.getElementById("saveImageBtn").addEventListener("click", () => {
+            // html2canvas(surveyJSON).then(canvas => {
+            html2canvas(document.getElementById("surveyContainer")).then(canvas => {
+                const link = document.createElement("a");
+                link.download = "טופס_רישום.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            });
+        });
+    
+    
+        // document.getElementById("whatsappBtn").addEventListener("click", () => {
+        //           const text = encodeURIComponent("תשובות לטופס רישום חיות:%0A" + JSON.stringify(window.surveyData, null, 2));
+        //           window.open(`https://wa.me/?text=${text}`, "_blank");
+        //         });
+    
+    
+        // });
+        // Uncaught ReferenceError: SurveyPDF is not defined
+    
+        </script>
+    </body>
+</html>
