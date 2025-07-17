@@ -1,0 +1,104 @@
+{
+  "title": "טופס השאלת ציוד 1894",
+  "pages": [
+    {
+      "showPageTitles": false,
+      "elements": [
+        {
+          "type": "text",
+          "name": "שם מלא"
+        },
+        {
+          "type": "text",
+          "name": "phone",
+          "title": "טלפון",
+          "inputType": "tel"
+        },
+        {
+          "type": "dropdown",
+          "name": "question7",
+          "title": "פלוגה",
+          "choices": [
+            "א",
+            "ב",
+            "ג",
+            "ד",
+            "פלס״ם"
+          ]
+        },
+        {
+          "type": "text",
+          "name": "מספר אישי",
+          "inputType": "number"
+        },
+        {
+          "type": "matrixdropdown",
+          "name": "ציוד שהושאל",
+          "columns": [
+            {
+              "name": "כמות",
+              "cellType": "number",
+              "placeholder": "0"
+            }
+          ],
+          "rows": [
+            "שולחן",
+            "ספסל",
+            "מיטה",
+            "מזרון",
+            "חופית",
+            "טרמוקן",
+            "ג׳ריקן",
+            "פח",
+            "רשת הצללה",
+            "ערכת אוסם",
+            "הלמניה",
+            "פטיש 5",
+            "אלונקה",
+            "בזנט 180",
+            "בזנט 60",
+            "שק שינה",
+            "לוח מחיק",
+            "חוטר",
+            "אלנוקה",
+            "מנשא לאלונקה",
+            "תחמושת 5.56",
+            "תחמושת 7.62",
+            "תחמושת פקפק"
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "equipmentList",
+          "title": "רשימת ציוד",
+          "addRowText": "הוסף",
+          "removeRowText": "מחק",
+          "columns": [
+            {
+              "name": "item",
+              "title": "שם פריט",
+              "cellType": "text",
+              "isRequired": true,
+              "width": "50%"
+            },
+            {
+              "name": "quantity",
+              "title": "כמות",
+              "cellType": "number",
+              "isRequired": true,
+              "min": 1,
+              "width": "20%"
+            },
+            {
+              "name": "note",
+              "title": "הערות",
+              "cellType": "text",
+              "width": "30%"
+            }
+          ],
+          "rowCount": 1
+        }
+      ]
+    }
+  ]
+}
