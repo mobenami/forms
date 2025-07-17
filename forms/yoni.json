@@ -37,7 +37,8 @@
           "columns": [
             {
               "name": "כמות",
-              "cellType": "number",
+              "cellType": "text",
+              "inputType": "number",
               "placeholder": "0"
             }
           ],
@@ -84,9 +85,9 @@
             {
               "name": "quantity",
               "title": "כמות",
-              "cellType": "number",
+              "cellType": "text",
+              "inputType": "number",
               "isRequired": true,
-              "min": 1,
               "width": "20%"
             },
             {

@@ -14,31 +14,6 @@ fetch(`forms/${formName}.json`)
 
     // בעת סיום
     survey.onComplete.add(sender => {
-
-//         const data = sender.data;
-        
-//         const displaySurvey = new Survey.Model(surveyJSON);
-//         displaySurvey.data = data;
-//         displaySurvey.mode = "display"; // 🟡 מצב תצוגה בלבד – בלי כפתור Submit
-    
-//         $("#surveyContainer").html(""); // ננקה
-//         $("#surveyContainer").Survey({ model: displaySurvey });
-
-
-
-    
-//         // שמירה כתמונה אוטומטית
-//         setTimeout(() => {
-//             html2canvas(document.getElementById("surveyContainer")).then(canvas => {
-//             const link = document.createElement("a");
-//             link.download = "טופס_רישום.png";
-//             link.href = canvas.toDataURL("image/png");
-//             link.click();
-//         });
-//     }, 500);
-// });
-
-
       const data = sender.data;
       const displaySurvey = new Survey.Model(surveyJSON);
       displaySurvey.data = data;
