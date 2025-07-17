@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>טופס דינמי</title>
+    <meta charset="UTF-8" />
+    <title>טופס השאלת ציוד 1894</title>
+    <link rel="icon" href="1894.ico" type="image/x-icon">
 
-  <script src="https://unpkg.com/jquery"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://unpkg.com/survey-jquery@1.9.126/survey.jquery.min.js"></script>
-  <script src="https://unpkg.com/survey-pdf@1.9.126/survey.pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link href="https://unpkg.com/survey-core@1.9.126/modern.min.css" type="text/css" rel="stylesheet"/>
-  
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/survey-jquery@1.9.126/survey.jquery.min.js"></script>
+    <script src="https://unpkg.com/survey-pdf@1.9.126/survey.pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://unpkg.com/survey-core@1.9.126/modern.min.css" type="text/css" rel="stylesheet" />
+    <script src="https://unpkg.com/survey-jquery@1.9.108/survey.jquery.min.js"></script>
+    <script src="https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="form.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            direction: rtl;
+        }
 
+        .sd-root-modern {
+            direction: rtl;
+            text-align: right;
+        }
 
-  <script src="https://unpkg.com/survey-jquery@1.9.108/survey.jquery.min.js"></script>
-  <script src="https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="form.js"></script>
-  <style>
-    body { font-family: sans-serif; direction: rtl; }
-    .sd-root-modern { direction: rtl; text-align: right; }
-    .sd-table__cell--header { text-align: right !important; }
-  </style>
+        .sd-table__cell--header {
+            text-align: right !important;
+        }
+    </style>
 </head>
+
 <body>
-  <div id="surveyContainer"></div>
+    <div id="surveyContainer"></div>
 </body>
+
 </html>
