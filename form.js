@@ -56,7 +56,7 @@ fetch(`forms/${formName}.json`)
             method: "POST",
             body: JSON.stringify(tikshuvData),
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "text/plain;charset=UTF-8"
             }
           })
 //           .then(response => response.text())
