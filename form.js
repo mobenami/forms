@@ -64,7 +64,7 @@ fetch(`forms/${formName}.json`)
 //              .catch(error => console.error("Error:", error));
       }
 
-      const phoneNumber = data.phone?.replace(/[^0-9]/g, "").replace(/^0+/, ''); // מסנן רק ספרות
+      const phoneNumber = data["טלפון"]?.replace(/[^0-9]/g, "").replace(/^0+/, ''); // מסנן רק ספרות
       if (phoneNumber) {
           window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent("ההשאלה נרשמה")}`, "_blank");
       }
