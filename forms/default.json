@@ -6,18 +6,19 @@
             "elements": [
                 {
                     "type": "text",
-                    "name": "שם מלא"
+                    "name": "שם מלא",
+                    "width": "50%"
                 },
                 {
                     "type": "text",
-                    "name": "phone",
-                    "title": "טלפון",
-                    "inputType": "tel"
+                    "name": "טלפון",
+                    "inputType": "tel",
+                    "width": "50%"
                 },
                 {
-                    "type": "dropdown",
-                    "name": "question7",
-                    "title": "פלוגה",
+                    "type": "radiogroup",
+                    "name": "פלוגה",
+                    "width": "50%",
                     "choices": [
                         "א",
                         "ב",
@@ -29,11 +30,12 @@
                 {
                     "type": "text",
                     "name": "מספר אישי",
-                    "inputType": "number"
+                    "inputType": "number",
+                    "width": "50%"
                 },
                 {
                     "type": "matrixdynamic",
-                    "name": "equipmentList",
+                    "name": "openedList",
                     "title": "רשימת ציוד",
                     "addRowText": "הוסף",
                     "removeRowText": "מחק",
@@ -43,7 +45,7 @@
                             "title": "שם פריט",
                             "cellType": "text",
                             "isRequired": true,
-                            "width": "50%"
+                            "width": "30%"
                         },
                         {
                             "name": "quantity",
@@ -51,17 +53,15 @@
                             "cellType": "text",
                             "inputType": "number",
                             "isRequired": true,
-                            "min": 1,
                             "width": "20%"
-                        },
-                        {
-                            "name": "note",
-                            "title": "הערות",
-                            "cellType": "text",
-                            "width": "30%"
                         }
                     ],
                     "rowCount": 1
+                },
+                {
+                    "type": "text",
+                    "name": "הערות",
+                    "width": "50%"
                 }
             ]
         }
