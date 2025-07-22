@@ -19,10 +19,8 @@ fetch(`forms/${formName}.json`)
       displaySurvey.data = data;
       displaySurvey.mode = "display";
 
-      $("#surveyContainer").html(""); // נקה
+    //   $("#surveyContainer").html(""); // נקה
       $("#surveyContainer").Survey({ model: displaySurvey });
-
-    //   console.log("before" + JSON.stringify(data, null, 2));
 
       if (formName === "tikshuv" || formName === "exit") {
         const tikshuvData = JSON.parse(JSON.stringify(data));
@@ -51,16 +49,19 @@ fetch(`forms/${formName}.json`)
             delete tikshuvData.closedList;
         }
 
-        console.log("before" + JSON.stringify(data, null, 2));
-        console.log("after" + JSON.stringify(tikshuvData));
+        if (tikshuvData["פלוגה"] && Array.isArray(tikshuvData["פלוגה"]) && tikshuvData["פלוגה"].length > 0) {
+            tikshuvData["פלוגה"] = tikshuvData["פלוגה"][0]; // שמירה על הבחירה הראשונה
+        }
 
-        let
+        // console.log("before" + JSON.stringify(data, null, 2));
+        // console.log("after" + JSON.stringify(tikshuvData));
+
+        let url = "";
         if (formName === "exit") {
             url = "https://script.google.com/macros/s/AKfycbzGH2naFum2o05Ugn8ZnvS6LWl1jFXlW4FX8ZQUmgBOFHAno7n9kB8cvKP-bSR8rNgS/exec";
         } else {
             url = "https://script.google.com/macros/s/AKfycbylh5l7ev_a3NC_pZaDAEEpJPoQM-FPqrtnpjMM--FpzNSJKh-Y3cNMckPi3OxQweYw8g/exec";
         }
-        // שליחת הנתונים ל-Google Apps Script
 
         fetch(url, {
             method: "POST",
@@ -75,7 +76,7 @@ fetch(`forms/${formName}.json`)
       }
 
       const phoneNumber = data["טלפון"]?.replace(/[^0-9]/g, "").replace(/^0+/, ''); // מסנן רק ספרות
-      if (phoneNumber) {
+      if (phoneNumber && formName !== "exit") {
           window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent("ההשאלה נרשמה")}`, "_blank");
       }
 
