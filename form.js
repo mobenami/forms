@@ -22,7 +22,9 @@ fetch(`forms/${formName}.json`)
       $("#surveyContainer").html(""); // נקה
       $("#surveyContainer").Survey({ model: displaySurvey });
 
-      if (formName === "tikshuv") {
+    //   console.log("before" + JSON.stringify(data, null, 2));
+
+      if (formName === "tikshuv" || formName === "exit") {
         const tikshuvData = JSON.parse(JSON.stringify(data));
         // "openedList": [
         //     {
@@ -52,7 +54,15 @@ fetch(`forms/${formName}.json`)
         console.log("before" + JSON.stringify(data, null, 2));
         console.log("after" + JSON.stringify(tikshuvData));
 
-        fetch("https://script.google.com/macros/s/AKfycbylh5l7ev_a3NC_pZaDAEEpJPoQM-FPqrtnpjMM--FpzNSJKh-Y3cNMckPi3OxQweYw8g/exec", {
+        let
+        if (formName === "exit") {
+            url = "https://script.google.com/macros/s/AKfycbzGH2naFum2o05Ugn8ZnvS6LWl1jFXlW4FX8ZQUmgBOFHAno7n9kB8cvKP-bSR8rNgS/exec";
+        } else {
+            url = "https://script.google.com/macros/s/AKfycbylh5l7ev_a3NC_pZaDAEEpJPoQM-FPqrtnpjMM--FpzNSJKh-Y3cNMckPi3OxQweYw8g/exec";
+        }
+        // שליחת הנתונים ל-Google Apps Script
+
+        fetch(url, {
             method: "POST",
             body: JSON.stringify(tikshuvData),
             headers: {

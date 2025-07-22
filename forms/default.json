@@ -16,7 +16,7 @@
                     "width": "50%"
                 },
                 {
-                    "type": "radiogroup",
+                    "type": "checkbox",
                     "name": "פלוגה",
                     "width": "50%",
                     "choices": [
@@ -25,7 +25,8 @@
                         "ג",
                         "ד",
                         "פלס״ם"
-                    ]
+                    ],
+                    "maxSelectedChoices": 1
                 },
                 {
                     "type": "text",

@@ -1,0 +1,83 @@
+{
+    "title": "טופס השאלת ציוד 1894",
+    "pages": [
+        {
+            "showPageTitles": false,
+            "elements": [
+                {
+                    "type": "text",
+                    "name": "שם מלא",
+                    "width": "50%",
+                    "isRequired": true
+                },
+                {
+                    "type": "text",
+                    "name": "טלפון",
+                    "inputType": "tel",
+                    "width": "50%"
+                },
+                {
+                    "type": "checkbox",
+                    "name": "פלוגה",
+                    "width": "50%",
+                    "isRequired": true,
+                    "choices": [
+                        "א",
+                        "ב",
+                        "ג",
+                        "ד",
+                        "פלס״ם"
+                    ],
+                    "maxSelectedChoices": 1
+                },
+                {
+                    "type": "text",
+                    "name": "מספר אישי",
+                    "inputType": "number",
+                    "width": "50%",
+                    "isRequired": true
+                },
+                {
+                    "name": "תאריך יציאה",
+                    "type": "text",
+                    "inputType": "date",
+                    "defaultValueExpression": "today()",
+                    "isRequired": true
+                },
+                {
+                    "name": "שעת יציאה",
+                    "type": "text",
+                    "inputType": "time",
+                    "isRequired": true
+                },
+                {
+                    "name": "תאריך חזרה",
+                    "type": "text",
+                    "inputType": "date",
+                    "defaultValueExpression": "today(1)",
+                    "isRequired": true
+                },
+                {
+                    "name": "שעת חזרה",
+                    "type": "text",
+                    "inputType": "time",
+                    "isRequired": true
+                },
+                {
+                    "type": "text",
+                    "name": "אמצעי נסיעה",
+                    "inputType": "text",
+                    "width": "50%",
+                    "isRequired": true
+                },
+                {
+                    "type": "text",
+                    "name": "סיבה",
+                    "inputType": "text",
+                    "width": "50%",
+                    "isRequired": true
+                }
+            ]
+        }
+    ]
+}
